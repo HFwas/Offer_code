@@ -8,14 +8,17 @@ public class Singleton3 {
 	private String info;
 	
 	static{
-		Properties properties  = new Properties();
-		
 		try {
+
+			Properties properties  = new Properties();
+			
 			properties.load(Singleton3.class.getClassLoader().getResourceAsStream("singleton.properties"));
+			
+			INSTANCE = new Singleton3(properties.getProperty("info"));
+		
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		//INSTANCE = new Singleton3(properties.getProperty("info"));
 	}
 	
 	private Singleton3(String info) {
